@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Console Game</title>
+</head>
+
+<body>
+  <h1>Rock-Scissors-Paper Console Game</h1>
+  <script>
+    //Declare variables
+    let playerSelection;
+    let computerSelection;
+    let count;                              //Number of rounds played
+    let shapes = ['rock', 'paper', 'scissor'];  //Array of shapes selected at random by computer
+    let winTotal = 0;                           //Number of user wins
+
+
+    const MAX_ROUNDS = 5;                       //Maximum number of games to play
+
+    //Initiate game
+    function startGame() {
+      for (count = 0; count < MAX_ROUNDS; count++) {
+        playRound();
+      }
+      console.log(`Thank you for playing.  You played ${count} rounds and won ${winTotal} times.`);
+    }
+
+    //Randomly select shape for computer's turn
+    function computerPlay() {
+      computerSelection = shapes[Math.floor(Math.random() * shapes.length)];
+      return computerSelection;
+    }
+
+    //Game Logic to Declare winner of each round and increment win total
+    function playRound() {
+      playerSelection = prompt("Choose rock, paper, or scissor: ").toLowerCase().trim();
+      computerSelection = computerPlay();
+      let playerCap = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+      let compCap = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+      console.log(`You selected ${playerCap}.`);
+      console.log(`The computer selected ${compCap}.`);
+      if (playerSelection == 'rock' && computerSelection == 'rock') {
+        console.log(`You tied. Try again.`);
+      } else if (playerSelection == 'rock' && computerSelection == 'scissor') {
+        console.log(`You win! ${playerCap} beats ${compCap}.`);
+        winTotal++
+      } else if (playerSelection == 'rock' && computerSelection == 'paper') {
+        console.log(`You lose! ${playerCap} loses to ${compCap}.`);
+      } else if (playerSelection == 'paper' && computerSelection == 'paper') {
+        console.log(`You tied. Try again.`);
+      } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+        console.log(`You win! ${playerCap} beats ${compCap}.`);
+        winTotal++
+      } else if (playerSelection == 'paper' && computerSelection == 'scissor') {
+        console.log(`You lose! ${playerCap} loses to ${compCap}.`);
+      } else if (playerSelection == 'scissor' && computerSelection == 'scissor') {
+        console.log(`You tied. Try again.`);
+      } else if (playerSelection == 'scissor' && computerSelection == 'paper') {
+        console.log(`You win! ${playerCap} beats ${compCap}.`);
+        winTotal++
+      } else if (playerSelection == 'scissor' && computerSelection == 'rock') {
+        console.log(`You lose! ${playerCap} loses to ${compCap}.`);
+      } else {
+        console.log(`You did not type exactly either 'Rock', 'Paper', or 'Scissor'.  Please try again.`);
+      }
+    }
+
+  </script>
+</body>
+
+</html>
